@@ -20,8 +20,16 @@ export default function LoginPage() {
       </Text>
 
       <View style={styles.inputView}>
-        <TextInput style={styles.input} placeholder="Username" />
-        <TextInput style={styles.input} placeholder="Password" />
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor={'gray'}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor={'gray'}
+        />
       </View>
 
       <View style={styles.buttonView}>
@@ -41,7 +49,7 @@ export default function LoginPage() {
       <View style={styles.buttonViewRegister}>
         <Pressable
           style={styles.buttonRegister}
-          onPress={() => Alert.alert('Login Succesfully!')}>
+          onPress={() => Alert.alert('Register Succesfully!')}>
           <Text style={styles.buttonText}>Register?</Text>
         </Pressable>
       </View>
@@ -107,6 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     marginTop: 30,
+    textDecorationLine: 'underline',
   },
 
   rememberView: {
