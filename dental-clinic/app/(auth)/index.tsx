@@ -21,7 +21,7 @@ const Login = () => {
       const token = "this-is-a-test-token";
       await saveAuthDetails("authToken", token);
       Alert.alert("Login Successful!");
-      router.push("(auth)/home");
+      router.push("/home");
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +65,7 @@ const Login = () => {
       <View style={styles.buttonViewRegister}>
         <Pressable
           style={styles.buttonRegister}
-          onPress={() => router.push("(auth)/register")}
+          onPress={() => router.push("/register")}
         >
           <Text style={styles.buttonText}>Register?</Text>
         </Pressable>

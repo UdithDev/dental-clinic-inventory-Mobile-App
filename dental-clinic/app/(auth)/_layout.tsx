@@ -1,20 +1,31 @@
-import { Stack } from "expo-router";
+import TabBar from "@/components/TabBar";
+import { Tabs } from "expo-router";
+import React from "react";
 
 export default function LoginLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ title: "Login", headerShown: false }}
-      />
-      <Stack.Screen
-        name="register"
-        options={{ title: "Register", headerShown: false }}
-      />
-      <Stack.Screen
+    <Tabs tabBar={(props) => <TabBar {...props} />}>
+      <Tabs.Screen
         name="home"
         options={{ title: "Home", headerShown: false }}
       />
-    </Stack>
+      <Tabs.Screen
+        name="inventory"
+        options={{ title: "Inventory", headerShown: false }}
+      />
+      <Tabs.Screen
+        name="addUser"
+        options={{ title: "Add A User", headerShown: false }}
+      />
+
+      <Tabs.Screen
+        name="index"
+        options={{ title: "Login", headerShown: false }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{ title: "Register", headerShown: false, href: null }}
+      />
+    </Tabs>
   );
 }
