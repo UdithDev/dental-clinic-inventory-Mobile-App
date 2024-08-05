@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dental-clinic",
-    "slug": "dental-clinic",
+    "name": "declinic",
+    "slug": "declinic",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -27,8 +27,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-secure-store"
+      "expo-router"
     ],
     "experiments": {
       "typedRoutes": true

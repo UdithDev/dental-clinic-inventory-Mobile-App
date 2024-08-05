@@ -1,4 +1,4 @@
-import { saveAuthDetails } from "@/utils/secureStore";
+import { saveAuthDetails } from "@/utils/secureStorage";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -21,7 +21,7 @@ const Login = () => {
       const token = "this-is-a-test-token";
       await saveAuthDetails("authToken", token);
       Alert.alert("Login Successful!");
-      router.push("/home");
+      router.push("/(tabs)");
     } catch (error) {
       console.log(error);
     }

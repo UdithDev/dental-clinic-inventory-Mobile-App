@@ -49,7 +49,7 @@ const AddUser = () => {
 
         <Text style={styles.inputTitle}>Role</Text>
         <RNPickerSelect
-          onValueChange={(value) => setSelectedRole(value)}
+          onValueChange={(value: any) => setSelectedRole(value)}
           items={roles}
           placeholder={{ label: "Select a role", value: null }}
           style={pickerSelectStyles}
