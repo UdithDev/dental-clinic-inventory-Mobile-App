@@ -11,3 +11,6 @@ export async function getAuthDetails(key: string): Promise<string | null> {
 export async function deleteAuthDetails(key: string) {
   await SecureStore.deleteItemAsync(key);
 }
+export const useTokenAsBearer = (token: string) => {
+  return `Bearer ${token}`;
+};
