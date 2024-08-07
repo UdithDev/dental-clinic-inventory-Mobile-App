@@ -11,23 +11,26 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
 export default function Tab() {
   const [toggle, setToggle] = useState(true);
   const printRef = useRef<View>(null);
+ 
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         <Welcome />
         <AddItem />
         <TouchableOpacity
-          onPress={() => setToggle(!toggle)}
+          onPress={() => setModalVisible(true)}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Add Item</Text>
         </TouchableOpacity>
         {toggle && (
           <View ref={printRef} style={styles.hiddenContent}>
-            <ItemForm />
+           <ItemForm visible={modalVisible} onClose={() => setModalVisible(false)} />
           </View>
         )}
       </ScrollView>

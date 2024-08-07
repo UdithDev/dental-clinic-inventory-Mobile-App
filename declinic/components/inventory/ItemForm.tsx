@@ -1,17 +1,24 @@
-import { View, Text, TextInput, Button, StyleSheet,Modal } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useUser from "../../hooks/useUser";
 import { useTokenAsBearer } from "../../utils/secureStorage";
 const expressUrl = "http://localhost:3000";
 
-
 interface ItemFormProps {
   visible: boolean;
   onClose: () => void;
 }
 
-const ItemForm: React.FC<ItemFormProps> = ({visible,onClose}) => {
+const ItemForm: React.FC<ItemFormProps> = ({ visible, onClose }) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const user = useUser();
@@ -57,6 +64,7 @@ const ItemForm: React.FC<ItemFormProps> = ({visible,onClose}) => {
         // Assuming navigation is used in React Native for page changes
         // Replace with actual navigation logic if different
         // navigation.navigate("Inventory");
+        onClose();
       }
     } catch (err: any) {
       setError(err.response.data.error);
@@ -64,96 +72,99 @@ const ItemForm: React.FC<ItemFormProps> = ({visible,onClose}) => {
   };
   return (
     <Modal
-    visible={visible}
-    animationType="slide"
-    transparent={true}
-    onRequestClose={onClose}
+      visible={visible}
+      animationType="slide"
+      transparent={true}
+      onRequestClose={onClose}
     >
-    <View style={styles.formContainer}>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Item Name</Text>
-        <TextInput
-          onChangeText={handleChange("item_name")}
-          style={styles.input}
-          placeholder="Face Masks"
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>SKU</Text>
-        <TextInput
-          onChangeText={handleChange("sku")}
-          style={styles.input}
-          placeholder="XYZ12345"
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Serial No</Text>
-        <TextInput
-          onChangeText={handleChange("serial_number")}
-          style={styles.input}
-          placeholder="394857739"
-          keyboardType="numeric"
-        />
-        <Text style={styles.helpText}>
-          Serial Number must be a unique set of numbers for each item
-        </Text>
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Vendor Details</Text>
-        <TextInput
-          onChangeText={handleChange("vendor_details")}
-          style={styles.input}
-          placeholder="Aspirin Inc."
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Location</Text>
-        <TextInput
-          onChangeText={handleChange("item_location")}
-          style={styles.input}
-          placeholder="Colombo"
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Expiry</Text>
-        <TextInput
-          onChangeText={handleChange("expiry_date")}
-          style={styles.input}
-          placeholder="YYYY-MM-DD"
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Quantity Available</Text>
-        <TextInput
-          onChangeText={handleChange("quantity_available")}
-          style={styles.input}
-          placeholder="100"
-          keyboardType="numeric"
-        />
-      </View>
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Min Stock</Text>
-        <TextInput
-          onChangeText={handleChange("minimum_stock")}
-          style={styles.input}
-          placeholder="10 Packs"
-          keyboardType="numeric"
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Add" onPress={handleSubmit} />
-      </View>
-      {error && (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error}</Text>
+      <View style={styles.formContainer}>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Item Name</Text>
+          <TextInput
+            onChangeText={handleChange("item_name")}
+            style={styles.input}
+            placeholder="Face Masks"
+          />
         </View>
-      )}
-      {success && !error && (
-        <View style={styles.successContainer}>
-          <Text style={styles.successText}>Item Added</Text>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>SKU</Text>
+          <TextInput
+            onChangeText={handleChange("sku")}
+            style={styles.input}
+            placeholder="XYZ12345"
+          />
         </View>
-      )}
-    </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Serial No</Text>
+          <TextInput
+            onChangeText={handleChange("serial_number")}
+            style={styles.input}
+            placeholder="394857739"
+            keyboardType="numeric"
+          />
+          <Text style={styles.helpText}>
+            Serial Number must be a unique set of numbers for each item
+          </Text>
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Vendor Details</Text>
+          <TextInput
+            onChangeText={handleChange("vendor_details")}
+            style={styles.input}
+            placeholder="Aspirin Inc."
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Location</Text>
+          <TextInput
+            onChangeText={handleChange("item_location")}
+            style={styles.input}
+            placeholder="Colombo"
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Expiry</Text>
+          <TextInput
+            onChangeText={handleChange("expiry_date")}
+            style={styles.input}
+            placeholder="YYYY-MM-DD"
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Quantity Available</Text>
+          <TextInput
+            onChangeText={handleChange("quantity_available")}
+            style={styles.input}
+            placeholder="100"
+            keyboardType="numeric"
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Min Stock</Text>
+          <TextInput
+            onChangeText={handleChange("minimum_stock")}
+            style={styles.input}
+            placeholder="10 Packs"
+            keyboardType="numeric"
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title="Add" onPress={handleSubmit} />
+        </View>
+        {error && (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{error}</Text>
+          </View>
+        )}
+        {success && !error && (
+          <View style={styles.successContainer}>
+            <Text style={styles.successText}>Item Added</Text>
+          </View>
+        )}
+        <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+          <Text style={styles.closeButtonText}>Close</Text>
+        </TouchableOpacity>
+      </View>
     </Modal>
   );
 };
@@ -204,6 +215,14 @@ const styles = StyleSheet.create({
   },
   successText: {
     color: "#0a0",
+    fontWeight: "bold",
+  },
+  closeButton: {
+    marginTop: 26,
+    alignItems: "center",
+  },
+  closeButtonText: {
+    color: "#007bff",
     fontWeight: "bold",
   },
 });

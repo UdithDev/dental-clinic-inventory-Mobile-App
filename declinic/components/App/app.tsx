@@ -6,7 +6,7 @@ const app:React.FC = () => {
     const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
-    <Button title="Add Item" onPress={() => setModalVisible(false)} />
+    <Button title="Add Item" onPress={() => setModalVisible(true)} />
     <ItemForm visible={modalVisible} onClose={() => setModalVisible(false)} />
   </View>
   )
