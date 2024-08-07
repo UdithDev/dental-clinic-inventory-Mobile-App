@@ -1,13 +1,16 @@
 import AddItem from "@/components/inventory/AddItem";
+import ItemForm from "@/components/inventory/ItemForm";
 import Welcome from "@/components/inventory/Welcome";
 import { useState,useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Tab() {
   const [toggle, setToggle] = useState(true);
   const printRef=useRef<View>(null)
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
       <Welcome />
       <AddItem />
       <TouchableOpacity
@@ -18,10 +21,11 @@ export default function Tab() {
       </TouchableOpacity>
       {toggle && (
         <View ref={printRef} style={styles.hiddenContent}>
-          {/* <Text>Content to display when toggled.</Text> ItemForm */}
+        <ItemForm/>
         </View>
       )}
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
