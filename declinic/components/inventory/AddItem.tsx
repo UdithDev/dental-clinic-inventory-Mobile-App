@@ -15,22 +15,22 @@ const AddItem: React.FC = () => {
       </Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: 600, // max-w-6xl equivalent
+    maxWidth: 600,
     padding: 16,
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 22, // text-2xl equivalent
+    fontWeight: "bold",
+    fontSize: 22,
     paddingVertical: 16,
-    color: "#2D9596", // text-accent equivalent color
+    color: "#2D9596",
   },
   description: {
     fontSize: 16,
-    color: '#000', // Default text color
+    color: "#000",
   },
 });
 
