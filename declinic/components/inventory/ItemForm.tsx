@@ -1,11 +1,17 @@
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet,Modal } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useUser from "../../hooks/useUser";
 import { useTokenAsBearer } from "../../utils/secureStorage";
 const expressUrl = "http://localhost:3000";
 
-const ItemForm: React.FC = () => {
+
+interface ItemFormProps {
+  visible: boolean;
+  onClose: () => void;
+}
+
+const ItemForm: React.FC<ItemFormProps> = ({visible,onClose}) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const user = useUser();
@@ -57,6 +63,12 @@ const ItemForm: React.FC = () => {
     }
   };
   return (
+    <Modal
+    visible={visible}
+    animationType="slide"
+    transparent={true}
+    onRequestClose={onClose}
+    >
     <View style={styles.formContainer}>
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Item Name</Text>
@@ -142,6 +154,7 @@ const ItemForm: React.FC = () => {
         </View>
       )}
     </View>
+    </Modal>
   );
 };
 const styles = StyleSheet.create({
